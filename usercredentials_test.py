@@ -28,6 +28,24 @@ class TestCredentials(unittest.TestCase):
         self.new_credentials.save_credentials()
         test_credentials = Credentials('Instagram','Bernice','Bernice019')
         test_credentials.save_credentials()
-        self.assertEqual(len(Credentials.credentials_list),2)           
+        self.assertEqual(len(Credentials.credentials_list),2)
+
+    def test_delete_credential(self):
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials('Instagram','Bernice','Bernice019')
+        test_credentials.save_credentials()
+        self.new_credentials.delete_credentials()
+        self.assertEqual(len(Credentials.credentials_list),1)
+
+    def test_find_credentials(self):
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials('Pinterest','Bernice','Bernice019')
+        test_credentials.save_credentials()
+        found_credentials = Credentials.find_credentials('Pinterest')
+        self.assertEqual(found_credentials.account,test_credentials.account)                  
+
+
+
+
 if __name__ == '__main__':
     unittest.main() 
