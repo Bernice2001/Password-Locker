@@ -44,8 +44,15 @@ class TestCredentials(unittest.TestCase):
         found_credentials = Credentials.find_credentials('Pinterest')
         self.assertEqual(found_credentials.account,test_credentials.account)                  
 
+    def test_credentials_exist(self):
+        self.new_credentials.save_credentials()
+        test_credentials = Credentials('Twitter','Bernice','Bernice019')
+        test_credentials.save_credentials()
+        credentials_exist = Credentials.credentials_exist('Twitter')
+        self.assertTrue(credentials_exist)
 
-
+    def display_credentials(self):
+        self.assertEqual(Credentials.display_credentials(),Credentials.credentials_list)
 
 if __name__ == '__main__':
     unittest.main() 
